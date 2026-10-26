@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://dnbf0kllkib1q" path="res://Scripts/Player.gd" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://d272ht2ljq3w3" path="res://craftpix-net-189780-free-top-down-pixel-art-guild-hall-asset-pack/PNG/Mage1.png" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://bf1ls33eoudyf" path="res://craftpix-net-189780-free-top-down-pixel-art-guild-hall-asset-pack/Tiled_files/Walls_street.png" id="3_kln2b"]
+[ext_resource type="Texture2D" uid="uid://cfrwnveyv71fc" path="res://Assets/text_box.png" id="3_v1gob"]
 [ext_resource type="Texture2D" uid="uid://blvuvyh3cykxe" path="res://craftpix-net-189780-free-top-down-pixel-art-guild-hall-asset-pack/Tiled_files/Exterior.png" id="4_guild_hall"]
 [ext_resource type="Script" uid="uid://dya22k3xjb7dr" path="res://Scripts/Building.gd" id="5_building"]
+[ext_resource type="Texture2D" uid="uid://d33ohbe383e2i" path="res://Assets/wizard_dialogue.png" id="6_wizard"]
+[ext_resource type="Script" uid="uid://b8s8185i5tfqa" path="res://Scripts/Main.gd" id="7_main_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_346fj"]
 atlas = ExtResource("2_kln2b")
@@ -227,6 +230,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(128, 128)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jw32o"]
+font_size = 60
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rgh2o"]
 texture = ExtResource("3_kln2b")
@@ -518,6 +524,7 @@ sources/0 = SubResource("TileSetAtlasSource_rgh2o")
 sources/1 = SubResource("TileSetAtlasSource_guild_hall")
 
 [node name="Main" type="Node2D" unique_id=994676520]
+script = ExtResource("7_main_script")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=879162916]
 z_index = 5
@@ -535,8 +542,32 @@ animation = &"right"
 shape = SubResource("RectangleShape2D_player")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1435286017]
-zoom = Vector2(4, 4)
+zoom = Vector2(6, 6)
 position_smoothing_enabled = true
+
+[node name="Text_box" type="Sprite2D" parent="Player" unique_id=250853085]
+position = Vector2(12.2504425, 367.25748)
+scale = Vector2(0.7854166, 0.52054805)
+texture = ExtResource("3_v1gob")
+
+[node name="Wizard_dialogue" type="Sprite2D" parent="Player/Text_box" unique_id=1948652606]
+position = Vector2(-578.03723, -714.6315)
+scale = Vector2(4.6763926, 6.6134863)
+texture = ExtResource("6_wizard")
+
+[node name="speech" type="Label" parent="Player/Text_box" unique_id=1206263500]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = -1
+anchor_left = 0.14
+anchor_top = 0.23900001
+anchor_right = 0.14
+anchor_bottom = 0.23900001
+offset_left = -1004.7152
+offset_top = -347.04962
+offset_right = 472.20813
+offset_bottom = -108.83917
+text = "I am a great wizard. Collect intrsuments"
+label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1050280496]
 tile_set = SubResource("TileSet_s3imr")
